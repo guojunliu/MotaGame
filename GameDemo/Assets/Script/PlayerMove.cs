@@ -6,12 +6,27 @@ public class PlayerMove : MonoBehaviour
 {
 	float speed = 8.0f;
 
-    public int yellowKeyNumber = 0;
+    public static PlayerMove instance;
+
+    public int currentFloor = 1; 
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector3(-2.45f, -4.6f, 0.0f);
     }
 
     // Update is called once per frame

@@ -6,10 +6,11 @@ namespace MotaGame
 {
     public class PlayerManager
     {
-        public int yellowKeyNumber = 0;
-        public int lifeValue = 100;
-        public int defenseValue = 100;
-        public int goldValue = 0;
+        public int yellowKeyNumber = 0;     // 黄色钥匙
+        public int lifeValue = 100;         // 生命值
+        public int attackValue = 100;       // 攻击值
+        public int defenseValue = 50;       // 防御值
+        public int goldValue = 0;           // 金币
 
         private static PlayerManager instance;
         private static object _lock=new object();
