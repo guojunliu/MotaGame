@@ -19,12 +19,14 @@ public class PlayerMove : MonoBehaviour
     {
         float inputX = Input.GetAxisRaw("Horizontal");
         Vector3 dx = new Vector3(inputX, 0.0f, 0.0f);
-        Debug.Log("dx: " + dx);
+        // Debug.Log("dx: " + dx);
         transform.position += dx *speed *Time.deltaTime;
 
         float inputY = Input.GetAxisRaw("Vertical");
         Vector3 dy = new Vector3(0.0f, inputY, 0.0f);
-        Debug.Log("dy: " + dy);
+        // Debug.Log("dy: " + dy);
         transform.position += dy *speed *Time.deltaTime;
+
+        // Debug.Log("Time.deltaTime: " + Time.deltaTime);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MotaGame;
 
 public class GetKey : MonoBehaviour
 {
@@ -15,20 +16,18 @@ public class GetKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log("Update");
         if (Input.GetKeyDown(KeyCode.G) && InTrigger)
         {
             Debug.Log("get key");
-            // GameObject.Destroy();
             gameObject.SetActive(false);
-            PlayerMove script = (PlayerMove) player.GetComponent(typeof(PlayerMove));
-            script.yellowKeyNumber += 1;
-            Debug.Log("yellow keys :" + script.yellowKeyNumber);
+
+            PlayerManager manager = PlayerManager.GetInstance();
+            manager.yellowKeyNumber += 1;
+
+            // PlayerMove script = (PlayerMove) player.GetComponent(typeof(PlayerMove));
+            // script.yellowKeyNumber += 1;
+            Debug.Log("yellow keys :" + manager.yellowKeyNumber);
         }
-        // if (Input.GetKeyDown(KeyCode.E) && InDoor)
-        // {
-        //     Debug.Log("open eeee");
-        // }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 

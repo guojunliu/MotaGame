@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\GetKey.cs" />
      <Compile Include="Assets\Script\OpenTheDoor.cs" />
+     <Compile Include="Assets\Script\PlayerManager.cs" />
      <Compile Include="Assets\Script\PlayerMove.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/Users/steve/Desktop/Unity/MotaGame/GameDemo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

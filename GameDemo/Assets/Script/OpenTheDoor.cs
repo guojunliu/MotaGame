@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MotaGame;
 
 public class OpenTheDoor : MonoBehaviour
 {
@@ -18,24 +19,18 @@ public class OpenTheDoor : MonoBehaviour
         // Debug.Log("Update");
         if (Input.GetKeyDown(KeyCode.O) && InTrigger)
         {
-            // GameObject go = GameObject.Find("Player"); 
-　　         PlayerMove playerScript = (PlayerMove) player.GetComponent(typeof(PlayerMove));
-　　         int yellow_key_number = playerScript.yellowKeyNumber;
+// 　　         PlayerMove playerScript = (PlayerMove) player.GetComponent(typeof(PlayerMove));
+            PlayerManager manager = PlayerManager.GetInstance();
+　　         int yellow_key_number = manager.yellowKeyNumber;
             if (yellow_key_number > 0) {
                 Debug.Log("open yellow door");
-                playerScript.yellowKeyNumber -= 1;
+                manager.yellowKeyNumber -= 1;
                 gameObject.SetActive(false);
             }
             else {
                 Debug.Log("Not enough yellow keys");
             }
-
-            
         }
-        // if (Input.GetKeyDown(KeyCode.E) && InDoor)
-        // {
-        //     Debug.Log("open eeee");
-        // }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 
