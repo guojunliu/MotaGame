@@ -18,16 +18,22 @@ public class GetKey : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G) && InTrigger)
         {
-            Debug.Log("get key");
-            gameObject.SetActive(false);
-
-            PlayerManager manager = PlayerManager.GetInstance();
-            manager.yellowKeyNumber += 1;
-
-            // PlayerMove script = (PlayerMove) player.GetComponent(typeof(PlayerMove));
-            // script.yellowKeyNumber += 1;
-            Debug.Log("yellow keys :" + manager.yellowKeyNumber);
+            this.PikcUp();
         }
+    }
+
+    public void PikcUp ()
+    {
+        Debug.Log("get key");
+        gameObject.SetActive(false);
+
+        PlayerManager manager = PlayerManager.GetInstance();
+        manager.yellowKeyNumber += 1;
+
+        KeyYellowValue.instance.UpdateValue(manager.yellowKeyNumber);
+
+        Debug.Log("yellow keys :" + manager.yellowKeyNumber);
+        PlayerMove.instance.key = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 
@@ -36,6 +42,7 @@ public class GetKey : MonoBehaviour
     	{
     		InTrigger = true;
             player = collision.gameObject;
+            PlayerMove.instance.key = this;
     	}
     }
 
@@ -45,6 +52,7 @@ public class GetKey : MonoBehaviour
         {
             InTrigger = false;
             player = null;
+            PlayerMove.instance.key = null;
         }
     }
 }

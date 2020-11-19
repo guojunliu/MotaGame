@@ -7,9 +7,9 @@ namespace MotaGame
     public class PlayerManager
     {
         public int yellowKeyNumber = 0;     // 黄色钥匙
-        public int lifeValue = 100;         // 生命值
-        public int attackValue = 100;       // 攻击值
-        public int defenseValue = 50;       // 防御值
+        public int lifeValue = 300;         // 生命值
+        public int attackValue = 50;       // 攻击值
+        public int defenseValue = 20;       // 防御值
         public int goldValue = 0;           // 金币
 
         private static PlayerManager instance;
@@ -33,6 +33,30 @@ namespace MotaGame
                     }
                 }
             return instance;
+        }
+
+        public void UpdateLifeValue (int value)
+        {
+            lifeValue = value;
+            LifeValue.instance.UpdateLiftValue(value);
+        }
+
+        public void UpdateAttackValue(int value)
+        {
+            attackValue = value;
+            AttackValue.instance.UpdateValue(value);
+        }
+
+        public void UpdateDefenseValue(int value)
+        {
+            defenseValue = value;
+            DefenseValue.instance.UpdateValue(value);
+        }
+
+        public void UpdateGoldValue(int value)
+        {
+            goldValue = value;
+            GoldValue.instance.UpdateValue(value);
         }
     }
 }

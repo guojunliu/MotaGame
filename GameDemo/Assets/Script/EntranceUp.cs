@@ -8,10 +8,13 @@ public class EntranceUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerMove.instance.currentFloor - 1 == floor)
+        if (PlayerMove.instance != null)
         {
-            PlayerMove.instance.transform.position = transform.position;
-            PlayerMove.instance.currentFloor -= 1;
+            if (PlayerMove.instance.currentFloor - 1 == floor)
+            {
+                PlayerMove.instance.transform.position = transform.position;
+                PlayerMove.instance.currentFloor -= 1;
+            }
         }
     }
 

@@ -19,17 +19,25 @@ public class OpenTheDoor : MonoBehaviour
         // Debug.Log("Update");
         if (Input.GetKeyDown(KeyCode.O) && InTrigger)
         {
-// 　　         PlayerMove playerScript = (PlayerMove) player.GetComponent(typeof(PlayerMove));
-            PlayerManager manager = PlayerManager.GetInstance();
-　　         int yellow_key_number = manager.yellowKeyNumber;
-            if (yellow_key_number > 0) {
-                Debug.Log("open yellow door");
-                manager.yellowKeyNumber -= 1;
-                gameObject.SetActive(false);
-            }
-            else {
-                Debug.Log("Not enough yellow keys");
-            }
+            // 　　         PlayerMove playerScript = (PlayerMove) player.GetComponent(typeof(PlayerMove));
+            this.OpenDoor();
+        }
+    }
+
+    public void OpenDoor ()
+    {
+        PlayerManager manager = PlayerManager.GetInstance();
+        int yellow_key_number = manager.yellowKeyNumber;
+        if (yellow_key_number > 0)
+        {
+            Debug.Log("open yellow door");
+            manager.yellowKeyNumber -= 1;
+            KeyYellowValue.instance.UpdateValue(manager.yellowKeyNumber);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Not enough yellow keys");
         }
     }
 
@@ -39,7 +47,8 @@ public class OpenTheDoor : MonoBehaviour
     	{
     		InTrigger = true;
             player = collision.gameObject;
-    	}
+            PlayerMove.instance.door = this;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -48,6 +57,7 @@ public class OpenTheDoor : MonoBehaviour
         {
             InTrigger = false;
             player = collision.gameObject;
+            PlayerMove.instance.door = null;
         }
     }
 }

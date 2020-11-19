@@ -31,7 +31,6 @@ public class StairUp : MonoBehaviour
             canTrigger = false;
             //SceneManager.LoadScene("SecondFloor", LoadSceneMode.Additive);
 
-            Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene("floor_" + (PlayerMove.instance.currentFloor + 1));
         }
     }

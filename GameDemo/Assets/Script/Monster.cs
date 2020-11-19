@@ -8,10 +8,10 @@ public class Monster : MonoBehaviour
     private bool InTrigger = false;
     private GameObject player;
     
-    public int mLifeValue = 20;        // 怪物生命值
-    public int mAttackValue = 20;     // 怪物攻击值
-    public int mDefenseValue = 20;     // 怪物防御值
-    public int mBounty = 10;           // 击杀怪物赏金
+    public int mLifeValue;        // 怪物生命值
+    public int mAttackValue;     // 怪物攻击值
+    public int mDefenseValue;     // 怪物防御值
+    public int mBounty;           // 击杀怪物赏金
 
     // Start is called before the first frame update
     void Start()
@@ -24,29 +24,44 @@ public class Monster : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P) && InTrigger)
         {
-            PlayerManager manager = PlayerManager.GetInstance();
-            int playerLife = manager.lifeValue;
-            int playerAttackValue = manager.attackValue;
-            int playerDefenseValue = manager.defenseValue;
+            this.Attact();
+        }
+    }
 
-            while(true)
+    public void Attact()
+    {
+        PlayerManager manager = PlayerManager.GetInstance();
+        int playerLife = manager.lifeValue;
+        int playerAttackValue = manager.attackValue;
+        int playerDefenseValue = manager.defenseValue;
+
+        while (true)
+        {
+            Debug.Log("玩家生命  : " + playerLife);
+            Debug.Log("玩家攻击力  : " + playerAttackValue);
+            Debug.Log("玩家防御力  : " + playerDefenseValue);
+            Debug.Log("怪物生命  : " + mLifeValue);
+            Debug.Log("玩家攻击力  : " + mAttackValue);
+            Debug.Log("玩家防御力  : " + mDefenseValue);
+
+            // 玩家先发起攻击
+            mLifeValue -= ((playerAttackValue - mDefenseValue) > 0 ? (playerAttackValue - mDefenseValue) : 0);
+            if (mLifeValue <= 0)
             {
-                // 玩家先发起攻击
-                mLifeValue -= (playerAttackValue - mDefenseValue)>0?(playerAttackValue - mDefenseValue):0;
-                if (mLifeValue <= 0) 
-                {
-                    PlayerVictory();
-                    manager.lifeValue = playerLife;
-                    return;
-                }
+                Debug.Log("玩家先发起攻击 playerLife : " + playerLife);
+                Debug.Log("玩家先发起攻击 mLifeValue : " + mLifeValue);
+                PlayerVictory(playerLife,mBounty);
+                return;
+            }
 
-                // 怪物发起攻击
-                playerLife -= (mAttackValue - playerDefenseValue)>0?(mAttackValue - playerDefenseValue):0;
-                if (playerLife <= 0) 
-                {
-                    PlayerDefeat();
-                    return;
-                }
+            // 怪物发起攻击
+            playerLife -= ((mAttackValue - playerDefenseValue) > 0 ? (mAttackValue - playerDefenseValue) : 0);
+            if (playerLife <= 0)
+            {
+                Debug.Log("玩家先发起攻击 playerLife : " + playerLife);
+                Debug.Log("玩家先发起攻击 mLifeValue : " + mLifeValue);
+                PlayerDefeat();
+                return;
             }
         }
     }
@@ -57,7 +72,8 @@ public class Monster : MonoBehaviour
     	{
     		InTrigger = true;
             player = collision.gameObject;
-    	}
+            PlayerMove.instance.monster = this;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -66,14 +82,17 @@ public class Monster : MonoBehaviour
         {
             InTrigger = false;
             player = collision.gameObject;
+            PlayerMove.instance.monster = null;
         }
     }
 
-    private void PlayerVictory () 
+    private void PlayerVictory (int life, int gold) 
     {
         Debug.Log("playerVictory");
         PlayerManager manager = PlayerManager.GetInstance();
-        manager.goldValue += mBounty;
+        manager.UpdateLifeValue(life);
+        int gg = manager.goldValue + gold;
+        manager.UpdateGoldValue(gg);
 
         gameObject.SetActive(false);
     }

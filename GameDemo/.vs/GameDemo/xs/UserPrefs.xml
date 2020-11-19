@@ -1,11 +1,17 @@
 ﻿<Properties StartupConfiguration="{C2DAD6FD-C8D1-7620-DF1C-76DE5A0B4DB5}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/EntranceUp.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/PlayerManager.cs">
     <Files>
-      <File FileName="Assets/Script/StairDown.cs" Line="30" Column="47" />
-      <File FileName="Assets/Script/PlayerMove.cs" Line="11" Column="16" />
-      <File FileName="Assets/Script/StairUp.cs" Line="35" Column="87" />
-      <File FileName="Assets/Script/EntranceDown.cs" Line="14" Column="10" />
-      <File FileName="Assets/Script/EntranceUp.cs" Line="13" Column="47" />
+      <File FileName="Assets/Script/GetKey.cs" Line="45" Column="44" />
+      <File FileName="Assets/Script/Control.cs" />
+      <File FileName="Assets/Script/Healing.cs" />
+      <File FileName="Assets/Script/PlayerManager.cs" Line="38" Column="28" />
+      <File FileName="Assets/Script/PlayerMove.cs" Line="18" Column="33" />
+      <File FileName="Assets/Script/AttackValue.cs" Line="5" Column="22" />
+      <File FileName="Assets/Script/GameAction.cs" Line="36" Column="53" />
+      <File FileName="Assets/Script/GemAttack.cs" Line="45" Column="50" />
+      <File FileName="Assets/Script/LifeValue.cs" Line="4" Column="1" />
+      <File FileName="Assets/Script/DefenseValue.cs" Line="30" Column="30" />
+      <File FileName="Assets/Script/GemDefense.cs" Line="36" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +19,7 @@
           <Node name="GameDemo" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Script" expanded="True">
-                <Node name="EntranceUp.cs" selected="True" />
+                <Node name="PlayerManager.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -23,7 +29,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="90a13600-967b-47e2-ac97-001f4dbcf926" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ffc2531b-f5c4-45ec-a44b-33525ecbcd06" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
